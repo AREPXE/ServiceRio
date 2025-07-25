@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Rio</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon_io/favicon.ico">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="theme.css">
+
+    <link rel="stylesheet" href="messager.css">
+     <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- CSS personnalisé -->
+    <style>
+        body {
+            /*background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            */
+            background-color: #F6EBDD !important;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            font-weight: 600;
+            /*color: #2c3e50;*/
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .form-section {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .form-section label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .form-section input, .form-section textarea, .form-section select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        .form-section input:focus, .form-section textarea:focus, .form-section select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .form-section textarea {
+            min-height: 100px;
+        }
+        .cities-section, .contact-section {
+            margin-bottom: 15px;
+        }
+        .cities-section label, .contact-section label {
+            margin-bottom: 10px;
+        }
+        .cities-section .dropdown-toggle {
+            width: 100%;
+            text-align: left;
+            /*background: #f8f9fa;*/
+            
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1rem;
+        }
+        .cities-section .dropdown-toggle::after {
+            float: right;
+            margin-top: 8px;
+        }
+        .cities-section .dropdown-menu {
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            overflow-x: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .cities-section .form-check {
+            padding: 10px 15px;
+            margin: 0;
+        }
+        .cities-section .form-check:hover {
+            background: #e9ecef;
+        }
+        .cities-section .form-check-input {
+            margin-right: 10px;
+            margin-left: 1%;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .cities-section .form-check-label {
+            font-size: 1rem;
+            color: #333;
+            cursor: pointer;
+        }
+        .contact-section .form-check {
+            margin-bottom: 15px;
+            padding-left: 35px;
+            position: relative;
+        }
+        .contact-section .form-check-input {
+            width: 20px;
+            height: 20px;
+            margin-left: -35px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .contact-section .form-check-input:checked {
+            background-color: #007bff;
+            border-color: #007bff;
+            transform: scale(1.1);
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+        }
+        .contact-section .form-check-label {
+            font-size: 1rem;
+            /*color: #2c3e50;*/
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .contact-section .form-check-input:hover + .form-check-label {
+            color: #0056b3;
+        }
+        .upload-section .custom-file-upload {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .upload-section .custom-file-upload:hover {
+            background: #0056b3;
+        }
+        .upload-section input[type="file"] {
+            display: none;
+        }
+        .upload-section .file-name {
+            margin-left: 10px;
+            font-size: 0.9rem;
+            /*color: #555;*/
+        }
+        .error {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+        .success {
+            color: green;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .submit-btn {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Modification */
+
+        .lien-retour {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 7px;
+            margin-left: 30px;
+            margin-top: 5px;
+            text-decoration: none;
+
+            background: #fff;
+            color: #007bff !important;
+            border: 1px solid #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: medium;
+            font-weight: 900;
+            margin-right: 20px;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- form -->
+    <div class="dropup theme-toggle">
+        <button class="btn btn-outline-primary rounded-circle" type="button" id="themeDropdown" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+        <!-- <button class="btn btn-outline-primary dropdown-toggle rounded-circle" type="button" id="themeDropdown" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"> -->
+            <span class="theme-icon active" data-theme="light"><i class="fas fa-sun"></i></span>
+            <span class="theme-icon" data-theme="dark"><i class="fas fa-moon"></i></span>
+            <span class="theme-icon" data-theme="auto"><i class="fas fa-circle-half-stroke"></i></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="themeDropdown">
+            <li><a class="dropdown-item theme-option" href="#" data-theme="light">Clair</a></li>
+            <li><a class="dropdown-item theme-option" href="#" data-theme="dark">Sombre</a></li>
+            <li><a class="dropdown-item theme-option" href="#" data-theme="auto">Auto</a></li>
+        </ul>
+    </div>
+
+
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-sm-6">
+                <div><p>&nbsp;</p></div>
+                <p class="text-center mb-5" style="color: black; font-size: 50px;">Publier un Produit</p>
+                <form id="product-form" class="form-section">
+                    <label for="name">Nom du produit :</label>
+                    <input type="text" id="name" class="formChamp" required>
+                    <div id="name-error" class="error"></div>
+
+                    <label for="type">Type :</label>
+                    <select id="type" class="formChamp" required>
+                        <option value="">Sélectionnez un type</option>
+                        <option value="Acheter et vendre">Acheter et vendre</option>
+                        <option value="Autos et véhicules">Autos et véhicules</option>
+                        <option value="Immobilier">Immobilier</option>
+                        <option value="Emplois">Emplois</option>
+                    </select>
+                    <div id="type-error" class="error"></div>
+
+                    <label for="sub_type">Sous-type :</label>
+                    <select id="sub_type" class="formChamp" required disabled>
+                        <option value="">Sélectionnez un sous-type</option>
+                    </select>
+                    <div id="sub_type-error" class="error"></div>
+
+                    <label for="price">Prix (₱) :</label>
+                    <input type="number" id="price" step="0.01" min="0" class="formChamp" required>
+                    <div id="price-error" class="error"></div>
+
+                    <label for="description">Description :</label>
+                    <textarea id="description" class="formChamp" required></textarea>
+                    <div id="description-error" class="error"></div>
+
+                    <div class="cities-section">
+                        <label for="cities">Villes :</label>
+                        <div id="cities-error" class="error"></div>
+                        <div class="dropdown formChamp">
+                            <button class="btn dropdown-toggle select-ville" type="button" id="citiesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Sélectionner les villes
+                            </button>
+                            <ul class="dropdown-menu formChamp" aria-labelledby="citiesDropdown">
+                                <li class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="cities" value="Santo Domingo" id="city-santo-domingo">
+                                    <label class="form-check-label" for="city-santo-domingo">Santo Domingo</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="cities" value="Santiago" id="city-santiago">
+                                    <label class="form-check-label" for="city-santiago">Santiago</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="cities" value="Puerto Plata" id="city-puerto-plata">
+                                    <label class="form-check-label" for="city-puerto-plata">Puerto Plata</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="cities" value="La Romana" id="city-la-romana">
+                                    <label class="form-check-label" for="city-la-romana">La Romana</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="cities" value="San Pedro de Macorís" id="city-san-pedro">
+                                    <label class="form-check-label" for="city-san-pedro">San Pedro de Macorís</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="cities" value="Higüey" id="city-higuey">
+                                    <label class="form-check-label" for="city-higuey">Higüey</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="cities" value="La Vega" id="city-la-vega">
+                                    <label class="form-check-label" for="city-la-vega">La Vega</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="cities" value="Barahona" id="city-barahona">
+                                    <label class="form-check-label" for="city-barahona">Barahona</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="cities" value="Bonao" id="city-bonao">
+                                    <label class="form-check-label" for="city-bonao">Bonao</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="cities" value="San Cristóbal" id="city-san-cristobal">
+                                    <label class="form-check-label" for="city-san-cristobal">San Cristóbal</label>
+                                </li>
+
+                                <li class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="cities" value="San Francisco de Macorís" id="city-san-francisco">
+                                    <label class="form-check-label" for="city-san-francisco">San Francisco de Macorís</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="cities" value="Pedernales" id="city-pedernales">
+                                    <label class="form-check-label" for="city-pedernales">Pedernales</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="contact-section">
+                        <label>Moyens de contact :</label>
+                        <div id="contact-error" class="error"></div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="contact-whatsapp" name="contact" value="whatsapp">
+                            <label class="form-check-label" for="contact-whatsapp">WhatsApp</label>
+                        </div>
+                        <input type="tel" id="whatsapp-number" placeholder="Numéro WhatsApp (ex. +18091234567)" disabled>
+                        <div id="whatsapp-number-error" class="error"></div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="contact-email" name="contact" value="email">
+                            <label class="form-check-label" for="contact-email">Email</label>
+                        </div>
+                        <input type="email" id="contact-email-address" placeholder="Adresse email" disabled>
+                        <div id="contact-email-error" class="error"></div>
+                    </div>
+
+                    <div class="upload-section">
+                        <label>Fichiers multimédias (max 3 images, 2 vidéos, < 500 Ko chacun) :</label>
+                        <label for="media" class="custom-file-upload"><i class="fas fa-upload"></i> Choisir fichiers</label>
+                        <input type="file" id="media" accept="image/*,video/*" multiple required>
+                        <input type="hidden" id="media-types" name="media-types">
+                        <span id="media-name" class="file-name">Aucun fichier sélectionné</span>
+                        <div id="media-error" class="error"></div>
+                    </div>
+
+                    <div>&nbsp; &nbsp;</div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Publier</button>
+                        <div>&nbsp; &nbsp;</div>
+                        <a href="profile.html">
+                        <button class="btn btn-outline-primary" type="button">
+                            Annuler
+                        </button>
+                    </a>
+                    </div>
+                    
+                    <div id="form-message" class="success"></div>
+                </form>
+            </div>
+            <div class="col-sm-6 pt-20">
+                <img src="img/logo.jpg" alt="" class="img-fluid" style="max-width: 100%; height: 100%; border-radius: 15px; ">
+            </div>
+        </div>
+        
+        
+    </div>
+
+    <!-- BOUTON FLOTTANT POUR LE CHAT -->
+    <div id="chat-toggle-button" class="fixed bottom-5 left-3 bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-110">
+        <i class="fas fa-comments text-2xl"></i>
+        <span id="unread-indicator" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden"></span>
+    </div>
+
+    <!-- BARRE LATERALE DE MESSAGERIE -->
+    <div id="messaging-sidebar" class="messaging fixed top-0 right-0 h-full w-full md:w-[400px] lg:w-[450px] bg-white shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 flex flex-col" style="z-index: 1000;">
+        
+        <!-- Contenu principal de la messagerie -->
+        <div class="flex-grow flex flex-col overflow-hidden">
+            
+            <!-- VUE 1: LISTE DES CONVERSATIONS -->
+            <div id="conversation-list-view" class="flex flex-col h-full">
+                <!-- Entête de la liste -->
+                <div class="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+                    <h2 class="text-xl font-bold">Discussions</h2>
+                    <button id="close-chat-sidebar" class="p-2 text-gray-500 hover:text-gray-800">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <!-- La liste elle-même (avec scrolling) -->
+                <div class="conversation-list flex-grow overflow-y-auto" id="conversation-list">
+                    <!-- Les conversations seront chargées ici par JS -->
+                </div>
+            </div>
+            
+            <!-- VUE 2: CONVERSATION ACTIVE (initialement cachée) -->
+            <div id="chat-view" class="flex-grow flex-col h-full hidden">
+                <div class="chat-header flex items-center flex-shrink-0" id="chat-header">
+                    <button id="back-to-list-btn" class="text-gray-600 hover:text-gray-900 p-2 mr-2 rounded-full">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <!-- L'entête du chat sera chargé ici -->
+                </div>
+                <div class="chat-messages flex-grow overflow-y-auto" id="message-list">
+                    <!-- Les messages seront chargés ici -->
+                </div>
+                <form class="message-form flex items-center gap-3 flex-shrink-0" id="message-form">
+                    <textarea id="message-content" placeholder="Votre message..." required rows="1" class="flex-1 message-content"></textarea>
+                    <button type="submit" class="flex-shrink-0"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="global.js"></script>
+    <script src="form.js"></script>
+    <script src="theme.js"></script>
+
+    <script src="messager.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>

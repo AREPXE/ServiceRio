@@ -1,0 +1,399 @@
+/* Thème clair */
+html[data-theme="light"] {
+    --bg-primary: #ffffff; /* Fond blanc */
+    --text-primary: #333333; /* Texte noir */
+    --navbar-bg: #f8f9fa; /* Gris clair pour navbar */
+    --card-bg: #f8f9fa; /* Gris clair pour cartes */
+    --card-text: #333333; /* Texte noir */
+    --footer-bg: #2c3e50; /* Gris foncé pour footer */
+    --footer-text: #e9ecef; /* Texte clair pour footer */
+    --link-color: #007bff; /* Bleu pour liens */
+    --link-hover: #0056b3; /* Bleu sombre pour hover */
+    --btn-bg: #007bff; /* Fond bleu pour boutons */
+    --btn-text: #ffffff; /* Texte blanc pour boutons */
+}
+
+/* Thème sombre */
+html[data-theme="dark"] {
+    --bg-primary: #1a1a1a; /* Fond gris très foncé */
+    --text-primary: #e9ecef; /* Texte blanc cassé */
+    --navbar-bg: #17202e; /* Bleu-noir pour navbar */
+    --card-bg: #2c3e50; /* Gris foncé pour cartes */
+    --card-text: #e9ecef; /* Texte blanc cassé */
+    --footer-bg: #1c2526; /* Gris très foncé pour footer */
+    --footer-text: #e9ecef; /* Texte clair */
+    --link-color: #4dabf7; /* Bleu clair pour liens */
+    --link-hover: #1c7ed6; /* Bleu plus clair pour hover */
+    --btn-bg: #1c7ed6; /* Bleu sombre pour boutons */
+    --btn-text: #ffffff; /* Texte blanc */
+}
+
+/* Mode Auto : suit la préférence système */
+@media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]) {
+        --bg-primary: #1a1a1a;
+        --text-primary: #e9ecef;
+        --navbar-bg: #17202e;
+        --card-bg: #2c3e50;
+        --card-text: #e9ecef;
+        --footer-bg: #1c2526;
+        --footer-text: #e9ecef;
+        --link-color: #4dabf7;
+        --link-hover: #1c7ed6;
+        --btn-bg: #1c7ed6;
+        --btn-text: #ffffff;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    html:not([data-theme="dark"]) {
+        --bg-primary: #ffffff;
+        --text-primary: #333333;
+        --navbar-bg: #f8f9fa;
+        --card-bg: #f8f9fa;
+        --card-text: #333333;
+        --footer-bg: #2c3e50;
+        --footer-text: #e9ecef;
+        --link-color: #007bff;
+        --link-hover: #0056b3;
+        --btn-bg: #007bff;
+        --btn-text: #ffffff;
+    }
+}
+
+/* Appliquer les styles */
+body {
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.navbar {
+    background: var(--navbar-bg) !important;
+    color: var(--card-text) !important;
+}
+
+.card, .blog-card, .auth-container, .user-info, .filter-group, .form-section{
+    background: var(--card-bg) !important;
+    color: var(--card-text) !important;
+}
+
+footer {
+    background: var(--footer-bg) !important;
+    color: var(--footer-text) !important;
+}
+
+.nav-link {
+    color: var(--link-color) !important;
+}
+
+.nav-link:hover {
+    color: var(--link-hover) !important;
+}
+
+.nav-link::after {
+    background: var(--link-hover) !important;
+}
+
+.auth-btn, .logout-btn .lien-retour{
+    background: var(--navbar-bg) !important;
+    color: var(--link-color) !important;
+    border-color: var(--link-color) !important;
+}
+
+.auth-btn:hover, .logout-btn:hover {
+    background: var(--btn-bg) !important;
+    color: var(--btn-text) !important;
+}
+
+.user-profile span {
+    color: var(--card-text) !important;
+}
+
+.footer-links a, .social-links a {
+    color: var(--footer-text) !important;
+}
+
+.footer-links a:hover, .social-links a:hover {
+    color: var(--link-color) !important;
+}
+
+.footer-links a::after {
+    background: var(--link-color) !important;
+}
+
+.email-form input, .form-group input {
+    background: var(--card-bg) !important;
+    color: var(--card-text) !important;
+    border-color: var(--card-text) !important;
+}
+
+.email-form input::placeholder, .form-group input::placeholder {
+    color: var(--card-text) !important;
+    opacity: 0.7;
+}
+
+.email-form button {
+    background: var(--btn-bg) !important;
+    color: var(--btn-text) !important;
+}
+
+.email-form button:hover {
+    background: var(--link-hover) !important;
+}
+
+.carousel-control-prev, .carousel-control-next {
+    border-color: var(--link-color) !important;
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    background: var(--btn-bg) !important;
+    border-color: var(--link-hover) !important;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    filter: invert(1) !important;
+}
+
+/* Styles spécifiques pour le mode sombre */
+html[data-theme="dark"] .product-section h3, html[data-theme="dark"] h3 {
+    color: #e9ecef !important; /* Blanc cassé pour les titres h3 */
+}
+
+html[data-theme="dark"] h1 {
+    color: #e9ecef !important; /* Blanc cassé pour le titre h1 */
+}
+
+html[data-theme="dark"] .product-name {
+    color: #4dabf7 !important; /* Bleu clair pour les noms de produits hors modal */
+}
+
+html[data-theme="dark"] .message-modal .product-name {
+    color: #e9ecef !important; /* Blanc cassé pour les noms de produits dans le modal */
+}
+
+html[data-theme="dark"] .date {
+    color: #ced4da !important; /* Gris clair pour les dates */
+}
+
+html[data-theme="dark"] .product-type {
+    color: #e9ecef !important; /* Blanc cassé pour les types */
+}
+
+html[data-theme="dark"] .message-modal .author-name,
+html[data-theme="dark"] .message-modal .sender-name {
+    color: #e9ecef !important; /* Blanc cassé pour les noms d'expéditeurs dans le modal */
+}
+
+html[data-theme="dark"] .form-group label {
+    color: #e9ecef !important; /* Blanc cassé pour les labels dans form-group */
+}
+/*
+html[data-theme="dark"] .form-section {
+    background: var(--card-bg) !important;  Gris foncé (#2c3e50) pour le formulaire 
+}*/
+
+html[data-theme="dark"] .form-section label {
+    color: #e9ecef !important;  /*Blanc cassé pour les labels du formulaire*/ 
+}
+
+html[data-theme="dark"] .toggle-link p {
+    color: #e9ecef !important; /* Blanc cassé pour "Pas de compte ?" */
+}
+
+html[data-theme="dark"] .blog-card:hover {
+    box-shadow: 0 5px 15px rgba(77, 171, 247, 0.4) !important; /* Ombre bleu clair */
+}
+
+html[data-theme="dark"] .user-profile span {
+    /* color: #333333 !important;  Gris foncé pour le nom de l'utilisateur */
+    color: var(--card-text) !important; /*Modification*/
+}
+
+html[data-theme="dark"] .message-modal .modal-content {
+    background: var(--card-bg) !important; /* #2c3e50 pour le fond du modal */
+    color: var(--card-text) !important; /* #e9ecef pour le texte */
+}
+
+html[data-theme="dark"] .message-modal .modal-body {
+    color: #333333 !important; /* Gris foncé pour les messages généraux */
+}
+
+html[data-theme="dark"] .message-modal .modal-body p,
+html[data-theme="dark"] .message-modal .modal-body span {
+    color: #333333 !important; /* Gris foncé pour les messages spécifiques */
+}
+
+.product-name {
+    color: var(--link-color) !important;
+}
+
+.price {
+    color: #28a745 !important; /* Conservé pour cohérence */
+}
+
+.order-btn {
+    background: var(--btn-bg) !important;
+    color: var(--btn-text) !important;
+}
+
+.order-btn:hover {
+    background: var(--link-hover) !important;
+}
+
+.message-modal .modal-header {
+    background: var(--btn-bg) !important;
+    color: var(--btn-text) !important;
+}
+
+.message-modal .btn-primary {
+    background: var(--btn-bg) !important;
+    color: var(--btn-text) !important;
+}
+
+.message-modal .btn-primary:hover {
+    background: var(--link-hover) !important;
+}
+
+.message-modal .btn-secondary {
+    background: var(--card-bg) !important;
+    color: var(--card-text) !important;
+}
+
+.message-modal .btn-secondary:hover {
+    background: var(--link-hover) !important;
+    color: var(--btn-text) !important;
+}
+
+.theme-toggle .dropdown-menu {
+    background: var(--card-bg) !important;
+}
+
+.theme-toggle .dropdown-item {
+    color: var(--card-text) !important;
+}
+
+.theme-toggle .dropdown-item:hover {
+    background: var(--text-primary) !important;
+    color: var(--card-bg) !important;
+}
+
+/* Styles pour les icônes de thème */
+.theme-toggle .theme-icon {
+    display: none; /* Cacher toutes les icônes par défaut */
+    opacity: 0;
+    transform: rotate(0deg);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.theme-toggle .theme-icon.active {
+    display: inline-block; /* Afficher l'icône active */
+    opacity: 1;
+    transform: rotate(360deg); /* Rotation complète pour l'animation */
+}
+
+.theme-icon:hover{
+    transform: rotate(360deg);
+    color: black;
+}
+
+/* Styles pour le bouton flottant */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Assurer que le bouton est au-dessus du contenu */
+}
+
+.theme-toggle .btn {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); */
+
+    border: 2px solid transparent !important;
+    background-color: transparent !important;
+    color: blue !important;
+}
+
+.theme-toggle .btn i {
+    font-size: 1.5rem;
+}
+
+.theme-toggle .dropdown-menu {
+    top: auto !important;
+    bottom: 60px !important; /* Positionner au-dessus du bouton */
+    right: 0 !important;
+    left: auto !important;
+    transform: none !important;
+    min-width: 120px; /* Assurer une largeur suffisante */
+
+    z-index: 100000 !important;
+}
+
+/* Forcer le positionnement pour contrer Popper.js */
+.theme-toggle .dropdown-menu[data-bs-popper] {
+    top: auto !important;
+    bottom: 60px !important;
+    right: 0 !important;
+    left: auto !important;
+    transform: none !important;
+}
+
+
+/* mes modification */
+html[data-theme="dark"] .lien-nav {
+    color: #e9ecef !important;
+}
+
+html[data-theme="dark"] .navbar-collapse {
+    background: var(--navbar-bg) !important;
+}
+
+html[data-theme="dark"] .profile-section-modifi, .cadre-confirm-del{
+    background: var(--card-bg) !important;
+}
+
+html[data-theme="dark"] .profile-info .profile-name-modifi .profile-email-modifi .subscription-status-modifi{
+    color: var(--card-text) !important;
+}
+
+html[data-theme="light"] .profile-info .profile-name-modifi .profile-email-modifi .subscription-status-modifi{
+    color: var(--card-text) !important;
+}
+
+html[data-theme="dark"] #confirmMessage{
+    color: var(--card-text) !important;
+}
+
+html[data-theme="dark"] .messaging, .chat-messages, .message-form, .message-content{
+    background: var(--card-bg) !important;
+    color: var(--card-text) !important;
+}
+
+.filter-group{
+    background: var(--card-bg) !important;
+    
+}
+.filters select, .all-products, .select-ville{
+    color: var(--card-text) !important;
+}
+
+.form-section{
+    background: var(--card-bg) !important;
+    color: var(--card-text) !important;
+}
+.formChamp{
+    background: var(--card-bg) !important;
+    color: var(--card-text) !important;
+    /* border-color: var(--card-text) !important; */
+}
+
+.cities-section .form-check:hover {
+    background: none !important;
+}
+

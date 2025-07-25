@@ -1,0 +1,122 @@
+/* Styles pour la liste de conversations */
+.conversation-item {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.conversation-item:hover, .conversation-item.active {
+    background-color: #f3f4f6;
+}
+.conversation-item img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+.conversation-item .name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+.conversation-item .preview {
+    font-size: 0.85rem;
+    color: #6b7280;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+.conversation-item .time {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+.conversation-item .unread {
+    background: #2563eb;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Styles pour la zone de chat */
+.chat-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+.chat-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+.chat-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.chat-messages {
+    padding: 1rem;
+    background-color: #f9fafb;
+}
+.message-item {
+    margin-bottom: 1rem;
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+.message-item.sent {
+    margin-left: auto;
+    align-items: flex-end;
+}
+.message-item.received {
+    margin-right: auto;
+    align-items: flex-start;
+}
+.message-item .content {
+    padding: 10px 15px;
+    border-radius: 18px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+.message-item.sent .content {
+    background: #2563eb;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+.message-item.received .content {
+    background: #e5e7eb;
+    color: #1f2937;
+    border-bottom-left-radius: 4px;
+}
+.message-item .meta {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 5px;
+}
+.message-form {
+    padding: 1rem;
+    border-top: 1px solid #e5e7eb;
+    background-color: #fff;
+}
+.message-form textarea {
+    border: 1px solid #d1d5db;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    resize: none;
+}
+.message-form button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.message-form button:hover {
+    background: #1d4ed8;
+}

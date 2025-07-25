@@ -1,0 +1,106 @@
+        /* Style général du carrousel */
+        .containerHeaderCarousel {
+            position: relative !important;
+            max-width: 100% !important;
+            margin: 0 auto !important;
+        }
+
+        /* Hauteur fixe pour le carrousel */
+        .innerHeaderCarousel .img-carousel {
+            width: 100% !important;
+            height: 600px !important;
+            object-fit: cover !important; /* Assure que l'image couvre tout l'espace sans déformation */
+            border-radius: 0px;
+        }
+
+        /* Superposition du texte sur l'image */
+        .captionHeaderCarousel {
+            background: rgba(0, 0, 0, 0.5) !important; /* Fond semi-transparent pour lisibilité */
+            border-radius: 10px !important;
+            padding: 20px !important;
+            bottom: 20% !important;
+            left: 5% !important;
+            text-align: left !important;
+            width: 70% !important;
+        }
+
+        .captionHeaderCarousel .texte-h5 {
+            /* font-size: 2rem; */
+            font-weight: bold !important;
+            color: #fff !important;
+        }
+
+        .captionHeaderCarousel .texte-p {
+            font-size: 1.2rem !important;
+            color: #ddd !important;
+        }
+
+        /* Positionnement des boutons verticaux à droite */
+        .prevHeaderCarousel,
+        .nextHeaderCarousel {
+            width: 50px !important; /* Largeur des boutons */
+            height: 50px !important; /* Hauteur des boutons */
+            top: 50% !important; /* Centrage vertical */
+            transform: translateY(-50%) !important;
+            background: rgba(0, 0, 0, 0.5) !important; /* Fond semi-transparent */
+            border-radius: 100px !important;
+        }
+
+        .prevHeaderCarousel {
+            right: 10px !important; /* Position à droite */
+            left: auto !important;
+        }
+
+        .nextHeaderCarousel {
+            right: 10px !important; /* Position à droite */
+            left: auto !important;
+            top: calc(50% + 60px) !important; /* Décalage vers le bas pour le bouton suivant */
+        }
+
+        
+
+        /* Responsive pour mobile */
+        @media (max-width: 768px) {
+            .innerHeaderCarousel .img-carousel {
+                height: 350px !important; /* Réduit la hauteur sur mobile */
+            }
+
+            .captionHeaderCarousel {
+                bottom: 10% !important;
+                padding: 10px !important;
+            }
+
+            .captionHeaderCarousel .texte-h5 .TypeActu{
+                font-size: 1.2rem !important; /* Réduit la taille du titre */
+            }
+
+            .captionHeaderCarousel .texte-p {
+                font-size: 0.9rem !important; /* Réduit la taille du texte */
+            }
+
+            .prevHeaderCarousel,
+            .nextHeaderCarousel {
+                width: 30px !important;
+                height: 30px !important;
+            }
+
+            .prevHeaderCarousel {
+                right: 5px !important;
+            }
+
+            .nextHeaderCarousel {
+                right: 5px !important;
+                top: calc(50% + 50px) !important;
+            }
+        }
+
+        /* Animation (optionelle)*/
+        .itemHeaderCarousel{
+            opacity: 0.5 !important;
+            transition: opacity 0.65s ease !important;
+        }
+        .itemHeaderCarousel.active{
+            opacity: 1 !important;
+        }
+
+/* modification */

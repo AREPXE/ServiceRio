@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Rio</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon_io/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="theme.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            margin: 0;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            /* background: #fff;*/
+            background: #f5f7fa;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /*padding: 15px 20px;*/
+        }
+
+        .navbar-brand {
+            margin-left: 20px;
+        }
+
+        .navbar-brand img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-size: 1rem;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #007bff !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link i {
+            font-size: 1.2rem;
+        }
+
+        .auth-btn {
+            background: #fff;
+            color: #007bff !important;
+            border: 1px solid #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            margin-right: 20px;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .auth-btn:hover {
+            background: #007bff;
+            color: #fff !important;
+            transform: scale(1.05);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: 20px;
+        }
+
+        .user-profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user-profile span {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .logout-btn {
+            /*background: #fff;*/
+            color: #007bff !important;
+            border: 1px solid #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background: #007bff;
+            color: #fff !important;
+            transform: scale(1.05);
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 10px;
+        }
+
+        .navbar-toggler-icon {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .navbar-collapse {
+            /*  background: #fff; */
+              background: #f5f7fa;
+              padding: 20px;
+          }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: #e9ecef;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #e9ecef;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #007bff;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .footer-contact h5, .footer-links h5 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .social-links a {
+            color: #e9ecef;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: #007bff;
+            transform: scale(1.1);
+        }
+
+        .email-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .email-form input {
+            padding: 8px;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            background: #34495e;
+            color: #e9ecef;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .email-form input::placeholder {
+            color: #b0b8c1;
+        }
+
+        .email-form button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .email-form button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .footer-copyright {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer-copyright a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .footer-copyright a:hover {
+            text-decoration: underline;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Profil Section */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            animation: slideIn 0.5s ease-out;
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #007bff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border: 3px solid #007bff;
+            transition: transform 0.3s ease;
+            object-fit: cover;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-info {
+            margin-left: 20px;
+            flex-grow: 1;
+        }
+
+        .profile-info h2 {
+            font-size: 1.5rem;
+            /*color: #2c3e50;*/
+            margin: 0;
+        }
+
+        .profile-info p {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin: 5px 0 0;
+        }
+
+        .add-product-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 3px 3px;
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        .add-product-btn:hover {
+            background: #0056b3;
+        }
+
+        .message-icon {
+            position: relative;
+            margin-left: 10px;
+            cursor: pointer;
+            
+            
+            position: absolute;
+            bottom: 20px;
+            right: 35px;
+        }
+
+        .message-icon i {
+            font-size: 2.5rem;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        .message-icon:hover i {
+            color: #0056b3;
+        }
+
+        .message-icon .badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background: #dc3545;
+            color: white;
+            border-radius: 50%;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+        }
+
+        /* Blog Section */
+        .blog-section h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-inner img, .carousel-inner video {
+            width: 100% !important;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 35px;
+            height: 35px;
+            background: transparent !important;
+            border: 2px solid #007bff;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 1;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-control-prev {
+            left: 10px;
+        }
+
+        .carousel-control-next {
+            right: 10px;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background: #007bff;
+            border-color: #0056b3;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 18px;
+            height: 18px;
+            background-size: 100%, 100%;
+            filter: invert(0);
+            transition: filter 0.3s ease;
+        }
+
+        .carousel-control-prev:hover .carousel-control-prev-icon,
+        .carousel-control-next:hover .carousel-control-next-icon {
+            filter: invert(1);
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            justify-content: space-between;
+        }
+
+        .author-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .author-name {
+            font-size: 0.9rem;
+           /* color: #555; */
+        }
+
+        .reactions {
+            font-size: 0.85rem;
+            color: #888;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .reactions.liked {
+            color: #ff0000;
+        }
+
+        .reactions:hover {
+            color: #ff5555;
+        }
+
+        .product-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .product-type {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .date-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .description, .cities {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            position: relative;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .description-content, .cities-content {
+            display: block;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .description-content.truncated, .cities-content.truncated {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .voir-plus {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .order-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .order-btn:hover {
+            background: #0056b3;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .delete-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Modale de confirmation */
+        .modal-content {
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .modal-header {
+            background: #dc3545;
+            color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .modal-body {
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .modal-footer .btn-cancel {
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+        }
+
+        .modal-footer .btn-cancel:hover {
+            background: #5a6268;
+        }
+
+        .modal-footer .btn-confirm {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+        }
+
+        .modal-footer .btn-confirm:hover {
+            background: #c82333;
+        }
+
+        /* Messages dynamiques dans la modale */
+        .modal-message {
+            text-align: center;
+            font-size: 0.95rem;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .modal-message.loading {
+            color: #333;
+        }
+
+        .modal-message.success {
+            color: #28a745;
+        }
+
+        #confirmMessage {
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Modale de messagerie */
+        .message-modal .modal-dialog {
+            max-width: 600px;
+        }
+
+        .message-modal .modal-body {
+            padding: 20px;
+        }
+
+        .message-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .message-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .message-item.sent {
+            background: #e6f3ff;
+            margin-left: 20%;
+        }
+
+        .message-item.received {
+            background: #f8f9fa;
+            margin-right: 20%;
+        }
+
+        .message-item .message-content {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .message-item .message-meta {
+            font-size: 0.75rem;
+            color: #6c757d;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .message-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .message-form textarea {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            resize: none;
+        }
+
+        .message-form button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .message-form button:hover {
+            background: #0056b3;
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Navbar */
+        @media (max-width: 767.98px) {
+            .navbar-nav {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .nav-link {
+                font-size: 1.1rem;
+            }
+
+            .auth-btn, .user-profile, .logout-btn {
+                margin: 10px 0 0 0;
+                width: fit-content;
+            }
+
+            .user-profile {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-collapse {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                z-index: 100;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-brand img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .navbar-toggler-icon {
+                font-size: 1.2rem;
+            }
+
+            .nav-link {
+                font-size: 1rem;
+            }
+
+            .auth-btn, .logout-btn {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+
+            .user-profile img {
+                width: 25px;
+                height: 25px;
+            }
+
+            .user-profile span {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .navbar-brand {
+                margin-left: 10px;
+            }
+
+            .auth-btn, .logout-btn, .user-profile {
+                margin-right: 10px;
+            }
+
+            .navbar-brand img {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 767.98px) {
+            .footer .col-md-4 {
+                margin-bottom: 30px;
+            }
+
+            .footer-copyright {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 480px) {
+            footer {
+                padding: 30px 15px;
+            }
+
+            .footer-links h5, .footer-contact h5 {
+                font-size: 1.1rem;
+            }
+
+            .social-links a {
+                font-size: 1.3rem;
+            }
+
+            .email-form input, .email-form button {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            footer {
+                padding: 20px 10px;
+            }
+
+            .footer-links a {
+                font-size: 0.85rem;
+            }
+
+            .social-links a {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Responsive Content */
+        @media (max-width: 992px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+                font-size: 2rem;
+            }
+
+            .profile-info {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+
+            .profile-info h2 {
+                font-size: 1.3rem;
+            }
+
+            .add-product-btn {
+                position: static;
+                margin: 10px auto;
+            }
+
+            .blog-card {
+                margin-bottom: 15px;
+            }
+
+            .message-icon {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-pic {
+                width: 110px;
+                height: 110px;
+                font-size: 1.8rem;
+            }
+
+            .profile-info h2 {
+                font-size: 1.2rem;
+            }
+
+            .subscription-status {
+                font-size: 0.85rem;
+                padding: 4px 12px;
+            }
+
+            .product-name {
+                font-size: 1.1rem;
+            }
+
+            .card-body {
+                padding: 10px;
+            }
+
+            .author-pic {
+                width: 25px;
+                height: 25px;
+            }
+
+            .author-name {
+                font-size: 0.85rem;
+            }
+
+            .reactions {
+                font-size: 0.8rem;
+                margin-left: 8px;
+            }
+
+            .date, .price {
+                font-size: 0.9rem;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 30px;
+                height: 30px;
+                background: transparent !important;
+                border: 2px solid #0056b3;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            }
+
+            .carousel-control-prev {
+                left: 5px;
+            }
+
+            .carousel-control-next {
+                right: 5px;
+            }
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                width: 16px;
+                height: 16px;
+                filter: invert(0);
+            }
+
+            .message-modal .modal-dialog {
+                max-width: 90%;
+            }
+
+            .message-list {
+                max-height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-pic {
+                width: 100px;
+                height: 100px;
+                font-size: 1.5rem;
+            }
+
+            .profile-info h2 {
+                font-size: 1.1rem;
+            }
+
+            .subscription-status {
+                font-size: 0.8rem;
+                padding: 3px 10px;
+            }
+
+            .product-name {
+                font-size: 1rem;
+            }
+
+            .price, .description, .cities {
+                font-size: 0.9rem;
+            }
+
+            .author-pic {
+                width: 20px;
+                height: 20px;
+            }
+
+            .author-name {
+                font-size: 0.8rem;
+            }
+
+            .reactions {
+                font-size: 0.75rem;
+                margin-left: 6px;
+            }
+
+            .date, .price {
+                font-size: 0.85rem;
+            }
+
+            .delete-btn {
+                width: 25px;
+                height: 25px;
+            }
+
+            .modal-title {
+                font-size: 1.1rem;
+            }
+
+            .modal-body {
+                font-size: 0.9rem;
+            }
+
+            .modal-message, #confirmMessage {
+                font-size: 0.9rem;
+            }
+
+            .modal-footer .btn-cancel,
+            .modal-footer .btn-confirm {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+
+            .message-form textarea {
+                font-size: 0.85rem;
+            }
+
+            .message-form button {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .profile-pic {
+                width: 90px;
+                height: 90px;
+                font-size: 1.3rem;
+            }
+
+            .card-body {
+                padding: 8px;
+            }
+
+            .order-btn {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+
+            .author-name {
+                font-size: 0.75rem;
+            }
+
+            .reactions {
+                font-size: 0.7rem;
+                margin-left: 5px;
+            }
+
+            .date, .price {
+                font-size: 0.8rem;
+            }
+
+            .message-item .message-content {
+                font-size: 0.8rem;
+            }
+
+            .message-item .message-meta {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Styles pour la liste de conversations */
+.conversation-item {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.conversation-item:hover, .conversation-item.active {
+    background-color: #f3f4f6;
+}
+.conversation-item img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+.conversation-item .name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+.conversation-item .preview {
+    font-size: 0.85rem;
+    color: #6b7280;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+.conversation-item .time {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+.conversation-item .unread {
+    background: #2563eb;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Styles pour la zone de chat */
+.chat-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+.chat-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+.chat-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.chat-messages {
+    padding: 1rem;
+    background-color: #f9fafb;
+}
+.message-item {
+    margin-bottom: 1rem;
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+.message-item.sent {
+    margin-left: auto;
+    align-items: flex-end;
+}
+.message-item.received {
+    margin-right: auto;
+    align-items: flex-start;
+}
+.message-item .content {
+    padding: 10px 15px;
+    border-radius: 18px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+.message-item.sent .content {
+    background: #2563eb;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+.message-item.received .content {
+    background: #e5e7eb;
+    color: #1f2937;
+    border-bottom-left-radius: 4px;
+}
+.message-item .meta {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 5px;
+}
+.message-form {
+    padding: 1rem;
+    border-top: 1px solid #e5e7eb;
+    background-color: #fff;
+}
+.message-form textarea {
+    border: 1px solid #d1d5db;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    resize: none;
+}
+.message-form button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.message-form button:hover {
+    background: #1d4ed8;
+}
+    </style>
+</head>
+<body>
+    <!-- Theme -->
+    <div class="dropup theme-toggle">
+        <button class="btn btn-outline-primary rounded-circle" type="button" id="themeDropdown" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+        <!-- <button class="btn btn-outline-primary dropdown-toggle rounded-circle" type="button" id="themeDropdown" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"> -->
+            <span class="theme-icon active" data-theme="light"><i class="fas fa-sun"></i></span>
+            <span class="theme-icon" data-theme="dark"><i class="fas fa-moon"></i></span>
+            <span class="theme-icon" data-theme="auto"><i class="fas fa-circle-half-stroke"></i></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="themeDropdown">
+            <li><a class="dropdown-item theme-option" href="#" data-theme="light">Clair</a></li>
+            <li><a class="dropdown-item theme-option" href="#" data-theme="dark">Sombre</a></li>
+            <li><a class="dropdown-item theme-option" href="#" data-theme="auto">Auto</a></li>
+        </ul>
+    </div>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-md" style="position: fixed; top: 0; width: 100%; z-index: 10000000;">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="img/logo.jpg">
+                <img src="img/logo.jpg" alt="Logo" class="card">
+            </a>
+
+            <!-- Toggler for mobile -->
+            <button class="navbar-toggler p-1 card" style="text-decoration: none !important;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="navbar-toggler-icon"></i>
+                 
+            </button>
+
+            <!-- Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link lien-nav" href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link lien-nav" href="products.html"><i class="fas fa-list"></i> Produits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link lien-nav" href="profile.html"><i class="fas fa-user"></i> Profil</a>
+                    </li>
+                </ul>
+                <!-- Connexion/Inscription ou Profil/Déconnexion -->
+                <div id="auth-section"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top: 80px !important;">
+        <!-- Profil Utilisateur -->
+        <div class="profile-section profile-section-modifi">
+            <img class="profile-pic" id="profile-photo" src="https://via.placeholder.com/120" alt="Photo de profil">
+            <div class="message-icon" id="message-icon">
+                <!-- <i class="fas fa-envelope"></i> -->
+                <!-- <span class="badge" id="unread-count">0</span> -->
+                <!-- <a href="messager.html">
+                    <i class="fas fa-envelope"></i>
+                    <span class="badge" id="unread-count">0</span>
+                </a> -->
+            </div>
+            <div class="profile-info">
+                <h2 id="profile-name" class="profile-name-modifi">Jean Dupont</h2>
+                <p id="profile-email" class="profile-email-modifi">email@example.com</p>
+                <span class="subscription-status subscription-status-modifi">Inactif</span>
+            </div>
+            <button class="btn btn-success px-2" id="add-product-btn" title="Espace vendeur">
+                
+                <a href="form.html" style="color: white; text-decoration: none;">
+                   Espace vendeur
+                </a>
+            </button>
+        </div>
+
+        <!-- Section Produits Publiés -->
+        <div class="blog-section">
+            <h3>Produits Publiés</h3>
+            <div class="row" id="blog-container"></div>
+        </div>
+
+        <!-- Modale de confirmation de suppression -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content cadre-confirm-del">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Confirmer la suppression</h5>
+                        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                    </div>
+                    <div class="modal-body">
+                        <div id="confirmMessage">Voulez-vous vraiment supprimer ce produit ?</div>
+                        <div class="modal-message loading" id="loadingMessage">Suppression en cours...</div>
+                        <div class="modal-message success" id="successMessage">Produit supprimé !</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn-confirm" id="confirmDelete">Supprimer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modale d'envoi de message -->
+        <!-- <div class="modal fade" id="sendMessageModal" tabindex="-1" aria-labelledby="sendMessageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: #007bff; color: white;">
+                        <h5 class="modal-title" id="sendMessageModalLabel">Envoyer un message</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="send-message-form">
+                            <div class="mb-3">
+                                <label for="message-content" class="form-label">Message</label>
+                                <textarea class="form-control" id="message-content" rows="4" required></textarea>
+                            </div>
+                            <div class="modal-message loading" id="send-loading">Envoi en cours...</div>
+                            <div class="modal-message success" id="send-success">Message envoyé !</div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn-confirm" style="background: #007bff;" id="send-message-btn">Envoyer</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Modale de messagerie -->
+        <!-- <div class="modal fade message-modal" id="messagesModal" tabindex="-1" aria-labelledby="messagesModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: #007bff; color: white;">
+                        <h5 class="modal-title" id="messagesModalLabel">Messagerie</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="message-list" id="message-list"></div>
+                        <form class="message-form" id="reply-form">
+                            <textarea id="reply-content" placeholder="Votre réponse..." required></textarea>
+                            <button type="submit">Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <!-- Navigation Links -->
+                <div class="col-md-4 footer-links">
+                    <h5>Navigation</h5>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="products.html">Produits</a></li>
+                        <li><a href="profile.html">Profil</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Section -->
+                <div class="col-md-4 footer-contact">
+                    <h5>Contact</h5>
+                    <div class="social-links">
+                        <a href="https://wa.me/+1234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://x.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <form id="email-form" class="email-form">
+                        <input type="text" id="email-subject" placeholder="Entrez le sujet" required>
+                        <button type="submit">Envoyer</button>
+                    </form>
+                </div>
+                <!-- Copyright -->
+                <div class="col-md-4 footer-copyright">
+                    <p>© 2025 Tous droits réservés.<br>Designed by Expéra AKAKPO, <a href="mailto:esperaakakpo6@gmail.com">esperaakakpo6@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="global.js"></script>
+    <script src="profile.js"></script>
+    <script src="theme.js"></script>
+    
+</body>
+</html>

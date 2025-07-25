@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Rio</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon_io/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="carrousel.css">
+    <link rel="stylesheet" href="theme.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            margin: 0;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            /* background: #fff;*/
+            background: #f5f7fa;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /*padding: 15px 20px;*/
+        }
+
+        .navbar-brand {
+            margin-left: 20px;
+        }
+
+        .navbar-brand img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-size: 1rem;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #007bff !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link i {
+            font-size: 1.2rem;
+        }
+
+        .auth-btn {
+            background: #fff;
+            color: #007bff !important;
+            border: 1px solid #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            margin-right: 20px;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .auth-btn:hover {
+            background: #007bff;
+            color: #fff !important;
+            transform: scale(1.05);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: 20px;
+        }
+
+        .user-profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user-profile span {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .logout-btn {
+           /* background: #fff; */
+            color: #007bff !important;
+            border: 1px solid #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background: #007bff;
+            color: #fff !important;
+            transform: scale(1.05);
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 10px;
+        }
+
+        .navbar-toggler-icon {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .navbar-collapse {
+          /*  background: #fff; */
+            background: #f5f7fa;
+            padding: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: #e9ecef;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #e9ecef;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #007bff;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .footer-contact h5, .footer-links h5 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .social-links a {
+            color: #e9ecef;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: #007bff;
+            transform: scale(1.1);
+        }
+
+        .email-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .email-form input {
+            padding: 8px;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            background: #34495e;
+            color: #e9ecef;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .email-form input::placeholder {
+            color: #b0b8c1;
+        }
+
+        .email-form button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .email-form button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .footer-copyright {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer-copyright a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .footer-copyright a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 767.98px) {
+            .footer .col-md-4 {
+                margin-bottom: 30px;
+            }
+
+            .footer-copyright {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 480px) {
+            footer {
+                padding: 30px 15px;
+            }
+
+            .footer-links h5, .footer-contact h5 {
+                font-size: 1.1rem;
+            }
+
+            .social-links a {
+                font-size: 1.3rem;
+            }
+
+            .email-form input, .email-form button {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            footer {
+                padding: 20px 10px;
+            }
+
+            .footer-links a {
+                font-size: 0.85rem;
+            }
+
+            .social-links a {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Navbar Responsive */
+        @media (max-width: 767.98px) {
+            .navbar-nav {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .nav-link {
+                font-size: 1.1rem;
+            }
+
+            .auth-btn, .user-profile, .logout-btn {
+                margin: 10px 0 0 0;
+                width: fit-content;
+            }
+
+            .user-profile {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-collapse {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-brand img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .navbar-toggler-icon {
+                font-size: 1.2rem;
+            }
+
+            .nav-link {
+                font-size: 1rem;
+            }
+
+            .auth-btn, .logout-btn {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+
+            .user-profile img {
+                width: 25px;
+                height: 25px;
+            }
+
+            .user-profile span {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .navbar-brand {
+                margin-left: 10px;
+            }
+
+            .auth-btn, .logout-btn, .user-profile {
+                margin-right: 10px;
+            }
+
+            .navbar-brand img {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* Existing Styles */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .nav-link-old {
+            background: #007bff;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-link-old:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .product-section {
+            margin-bottom: 40px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .product-section h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .product-scroll {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 10px;
+            gap: 20px;
+            scrollbar-width: thin;
+            scrollbar-color: #007bff #e9ecef;
+        }
+
+        .product-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .product-scroll::-webkit-scrollbar-track {
+            background: #e9ecef;
+            border-radius: 4px;
+        }
+
+        .product-scroll::-webkit-scrollbar-thumb {
+            background: #007bff;
+            border-radius: 4px;
+        }
+
+        .product-scroll::-webkit-scrollbar-thumb:hover {
+            background: #0056b3;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            flex: 0 0 300px;
+            animation: slideInRight 0.5s ease-out forwards;
+            animation-delay: calc(var(--index) * 0.1s);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-inner img, .carousel-inner video {
+            width: 100% !important;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 35px;
+            height: 35px;
+            background: transparent !important;
+            border: 2px solid #007bff;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 1;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-control-prev {
+            left: 10px;
+        }
+
+        .carousel-control-next {
+            right: 10px;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background: #007bff;
+            border-color: #0056b3;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 18px;
+            height: 18px;
+            background-size: 100%, 100%;
+            filter: invert(0);
+            transition: filter 0.3s ease;
+        }
+
+        .carousel-control-prev:hover .carousel-control-prev-icon,
+        .carousel-control-next:hover .carousel-control-next-icon {
+            filter: invert(1);
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            justify-content: space-between;
+        }
+
+        .author-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .author-name {
+            font-size: 0.9rem;
+           /* color: #555; */
+        }
+
+        .reactions {
+            font-size: 0.85rem;
+            color: #888;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .reactions.liked {
+            color: #ff0000;
+        }
+
+        .reactions:hover {
+            color: #ff5555;
+        }
+
+        .product-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .product-type {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .date-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .description, .cities {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            position: relative;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .description-content, .cities-content {
+            display: block;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .description-content.truncated, .cities-content.truncated {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .voir-plus {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .order-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .order-btn:hover {
+            background: #0056b3;
+        }
+
+        .login-prompt {
+            display: none;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            z-index: 1000;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .reactions:hover .login-prompt {
+            display: block;
+        }
+
+        .message-option:hover .login-prompt {
+            display: block;
+        }
+
+        /* Modal Styles */
+        .message-modal .modal-content {
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .message-modal .modal-header {
+            background: #007bff;
+            color: #fff;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .message-modal .modal-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        .message-modal .btn-close {
+            filter: invert(1);
+        }
+
+        .message-modal .modal-body {
+            padding: 20px;
+        }
+
+        .message-modal textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            resize: vertical;
+            font-size: 0.95rem;
+        }
+
+        .message-modal .modal-footer {
+            border-top: none;
+            padding: 10px 20px;
+        }
+
+        .message-modal .btn-primary {
+            background: #007bff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .message-modal .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        .message-modal .btn-secondary {
+            background: #6c757d;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .message-modal .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .message-modal .loading,
+        .message-modal .success {
+            display: none;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .message-modal .loading {
+            color: #007bff;
+        }
+
+        .message-modal .success {
+            color: #28a745;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .blog-card {
+                flex: 0 0 280px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-name {
+                font-size: 1.1rem;
+            }
+
+            .card-body {
+                padding: 10px;
+            }
+
+            .author-pic {
+                width: 25px;
+                height: 25px;
+            }
+
+            .author-name {
+                font-size: 0.85rem;
+            }
+
+            .reactions {
+                font-size: 0.8rem;
+                margin-left: 8px;
+            }
+
+            .date, .price {
+                font-size: 0.9rem;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 30px;
+                height: 30px;
+                background: transparent !important;
+                border: 2px solid #0056b3;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            }
+
+            .carousel-control-prev {
+                left: 5px;
+            }
+
+            .carousel-control-next {
+                right: 5px;
+            }
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                width: 16px;
+                height: 16px;
+                filter: invert(0);
+            }
+
+            .blog-card {
+                flex: 0 0 260px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-name {
+                font-size: 1rem;
+            }
+
+            .price, .description, .cities {
+                font-size: 0.9rem;
+            }
+
+            .author-pic {
+                width: 20px;
+                height: 20px;
+            }
+
+            .author-name {
+                font-size: 0.8rem;
+            }
+
+            .reactions {
+                font-size: 0.75rem;
+                margin-left: 6px;
+            }
+
+            .date, .price {
+                font-size: 0.85rem;
+            }
+
+            .blog-card {
+                flex: 0 0 240px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .card-body {
+                padding: 8px;
+            }
+
+            .order-btn {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+
+            .author-name {
+                font-size: 0.75rem;
+            }
+
+            .reactions {
+                font-size: 0.7rem;
+                margin-left: 5px;
+            }
+
+            .date, .price {
+                font-size: 0.8rem;
+            }
+
+            .blog-card {
+                flex: 0 0 220px;
+            }
+        }
+        .navbar-toggler{
+            text-decoration: none !important;
+        }
+    </style>
+</head>
+<body>  
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-md" style="position: fixed; top: 0; width: 100%; z-index: 10000000;">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="img/logo.jpg">
+                <img src="img/logo.jpg" alt="Logo" class="card">
+            </a>
+
+            <!-- Toggler for mobile -->
+            <button class="navbar-toggler p-1 card" style="text-decoration: none !important;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="navbar-toggler-icon"></i>
+                 
+            </button>
+
+            <!-- Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link lien-nav" href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link lien-nav" href="products.html"><i class="fas fa-list"></i> Produits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link lien-nav" href="profile.html"><i class="fas fa-user"></i> Profil</a>
+                    </li>
+                </ul>
+                <!-- Connexion/Inscription ou Profil/Déconnexion -->
+                <div id="auth-section"></div>
+            </div>
+        </div>
+    </nav>
+    <!-- Theme -->
+    <div class="dropup theme-toggle">
+        <button class="btn btn-outline-primary rounded-circle" type="button" id="themeDropdown" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+        <!-- <button class="btn btn-outline-primary dropdown-toggle rounded-circle" type="button" id="themeDropdown" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"> -->
+            <span class="theme-icon active" data-theme="light"><i class="fas fa-sun"></i></span>
+            <span class="theme-icon" data-theme="dark"><i class="fas fa-moon"></i></span>
+            <span class="theme-icon" data-theme="auto"><i class="fas fa-circle-half-stroke"></i></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="themeDropdown">
+            <li><a class="dropdown-item theme-option" href="#" data-theme="light">Clair</a></li>
+            <li><a class="dropdown-item theme-option" href="#" data-theme="dark">Sombre</a></li>
+            <li><a class="dropdown-item theme-option" href="#" data-theme="auto">Auto</a></li>
+        </ul>
+    </div>
+
+
+     <!-- Conteneur du Carrousel -->
+     <div class="carousel-container containerHeaderCarousel" style="margin-top: 60px !important;">
+        <div id="HeaderCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Indicateurs (optionnels, ici désactivés) -->
+            <ol class="carousel-indicators">
+                <li data-bs-target="#HeaderCarousel" data-bs-slide-to="0" class="active" style="color: transparent;"></li>
+                <li data-bs-target="#HeaderCarousel" data-bs-slide-to="1" style="color: transparent;"></li>
+                <li data-bs-target="#HeaderCarousel" data-bs-slide-to="2" style="color: transparent;"></li>
+            </ol>
+
+            <!-- Images et Texte -->
+            <div class="carousel-inner innerHeaderCarousel">
+                <!-- Première Image -->
+                <div class="carousel-item active itemHeaderCarousel">
+                    <img src="img/image1.jpeg" class="img-carousel" alt="Plage">
+                    <div class="carousel-caption captionHeaderCarousel">
+                        <h5 class="texte-h5">Bienvenue chez <span style="color: darkorange;">Service Rio</span></h5>
+                        <p class="texte-p">Nous vous offrons des services sur mesure pour répondre à vos besoins
+                            avec efficacité et proffessionnalisme.</p>
+                    </div>
+                </div>
+                <!-- Deuxième Image -->
+                <div class="carousel-item itemHeaderCarousel">
+                    <img src="img/image2.jpeg" class="img-carousel" alt="Montagne">
+                    <div class="carousel-caption captionHeaderCarousel">
+                        <h5 class="texte-h5">Qu'est ce que <span style="color: darkorange;">Service Rio</span></h5>
+                        <p class="texte-p">Flexibilité, rapidité et souvent des coûts réduits, tout en permettant une 
+                            personnalisation adapté aux besoins des utilisateurs.</p>
+                    </div>
+                </div>
+                <!-- Troisième Image -->
+                <div class="carousel-item itemHeaderCarousel">
+                    <img src="img/image3.jpeg" class="img-carousel" alt="Forêt">
+                    <div class="carousel-caption captionHeaderCarousel">
+                        <h5 class="texte-h5">Publiez vos <span style="color: darkorange;">produits</span>
+                            et vos <span style="color: darkorange;">compétences</span></h5>
+                       <p class="texte-p">Creez un compte et publiez vos produits pour toucher une large audience</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boutons de Navigation -->
+            <button class="carousel-control-prev prevHeaderCarousel" type="button" data-bs-target="#HeaderCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon prevIconHeaderCarousel" aria-hidden="true"></span>
+                <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next nextHeaderCarousel" type="button" data-bs-target="#HeaderCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon nextIconHeaderCarousel" aria-hidden="true"></span>
+                <span class="visually-hidden">Suivant</span>
+            </button>
+        </div>
+    </div>
+
+
+    <div class="container" style="width: 98%;">
+        <!-- Produits Populaires -->
+        <div class="product-section">
+            <h3>Produits Populaires</h3>
+            <div class="product-scroll" id="popular-products"></div>
+        </div>
+
+        <!-- Produits Récents -->
+        <div class="product-section">
+            <h3>Produits Récents</h3>
+            <div class="product-scroll" id="recent-products"></div>
+        </div>
+
+        <!-- Autres Produits -->
+        <div class="product-section">
+            <h3>Autres Produits</h3>
+            <div class="product-scroll" id="other-products"></div>
+        </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div class="modal fade message-modal" id="sendMessageModal" tabindex="-1" aria-labelledby="sendMessageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="sendMessageModalLabel">Envoyer un message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <textarea id="message-content" placeholder="Votre message..." required></textarea>
+                    <span id="send-loading" class="loading">Envoi en cours...</span>
+                    <span id="send-success" class="success">Message envoyé !</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-cancel" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="send-message-btn">Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <!-- Navigation Links -->
+                <div class="col-md-4 footer-links">
+                    
+                    <h5>Navigation</h5>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="products.html">Produits</a></li>
+                        <li><a href="profile.html">Profil</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Section -->
+                <div class="col-md-4 footer-contact">
+                    <h5>Contact</h5>
+                    <div class="social-links">
+                        <a href="https://wa.me/+1234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://x.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <form id="email-form" class="email-form">
+                        <input type="text" id="email-subject" placeholder="Entrez le sujet" required>
+                        <button type="submit">Envoyer</button>
+                    </form>
+                </div>
+                <!-- Copyright -->
+                <div class="col-md-4 footer-copyright">
+                    <p>© 2025 Tous droits réservés.<br>Designed by Expéra AKAKPO, <a href="mailto:esperaakakpo6@gmail.com">esperaakakpo6@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="global.js"></script>
+    <script src="index.js"></script>
+    <script src="theme.js"></script>
+</body>
+</html>
